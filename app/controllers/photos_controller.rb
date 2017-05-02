@@ -6,6 +6,7 @@ def index
     render("index.html.erb")
 end
 
+
 def show
 # The params has looks like this: {"the_id_number"=>"1"}
 
@@ -46,8 +47,18 @@ def update_row
   p.caption = params["the_caption"]
   p.save
 
+@id_formatted = p.to_s
+
   # render("update_row.html.erb"), instead use redirect_to
     redirect_to("/photos")
+end
+
+def destroy
+  @photo = Photo.find(params[:the_id])
+
+@photo.destroy
+  redirect_to("/photos")
+
 end
 
 
